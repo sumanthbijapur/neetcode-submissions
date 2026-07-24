@@ -1,6 +1,7 @@
--- Write your query below
-select p.first_name,p.last_name,a.city,a.state
-from person p
-left join address a
-on 
-p.person_id=a.person_id;
+select sp.name
+from sales_person sp
+where sp.sales_id not in 
+(select o.sales_id
+from orders o 
+join company c on o.com_id=c.com_id
+where c.name='CRIMSON');
