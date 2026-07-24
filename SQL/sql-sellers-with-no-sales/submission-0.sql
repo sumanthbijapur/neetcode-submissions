@@ -1,6 +1,11 @@
 -- Write your query below
-select p.first_name,p.last_name,a.city,a.state
-from person p 
-left join address a
-on 
-a.person_id=p.person_id;
+select s.seller_name
+from seller s
+where 
+s.seller_id not in 
+(
+    select seller_id 
+    from orders 
+    where sale_date>='2020-01-01' and sale_date<='2020-12-31'
+)
+order by s.seller_name asc;
